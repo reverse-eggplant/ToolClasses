@@ -55,13 +55,6 @@
               responseBlock:(void (^) (id result, NSError * error))block;
 
 
-//获取融云会话token
-+ (void)getRCTokenWithUserId:(NSString *)userId
-                    userName:(NSString *)name
-                portrait_uri:(NSString *)portrait_uri
-               responseBlock:(void (^) (id result, NSError * error))block;
-
-
 /*
  *brief 取消网络请求
  */

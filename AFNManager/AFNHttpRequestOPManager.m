@@ -212,37 +212,6 @@
 }
 
 
-//获取融云会话token
-+ (void)getRCTokenWithUserId:(NSString *)userId
-                    userName:(NSString *)name
-                portrait_uri:(NSString *)portrait_uri
-               responseBlock:(void (^) (id result, NSError * error))block
-{
-    
-    [[[self class] sharedManager] GET:@"http://www.alayy.com/index.php?d=api&c=chat_b&m=get_token" parameters:@{@"user_id":userId,@"name":name,@"portrait_uri":portrait_uri} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (responseObject != nil) {
-            DLog(@"responseObject = %@",responseObject);
-            block(responseObject,nil);
-        }else{
-            //将获取的数据转换成字符串
-            NSString * resultString = [[NSString alloc]initWithData:operation.responseData encoding:NSUTF8StringEncoding];
-            //将字符串解析成json对象
-            NSObject * resultObj = [resultString objectFromJSONString];
-            //数据回调
-            DLog(@"resultObj = %@",resultObj);
-            
-            block(resultObj,nil);
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        DLog(@"error = %@",error);
-        block(nil,error);
-    }];
-
-}
-
 #pragma mark 取消网络请求
 
 + (void)cancelRequest{
